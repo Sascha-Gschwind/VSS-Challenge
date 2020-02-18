@@ -19,7 +19,11 @@
 * Presentation: **12.05.2020**
 
 ## Team
+* Mike Schmid
+* Luca Tavernini
+* Sascha Gschwind
 
 ## Ideas
+* Master-PW Verteilung
 
 ## Technologies
