@@ -1,5 +1,4 @@
 # VSS-Challenge
-## Task
 ## Requirements
 1. Use at least one text protocol, at least one binary protocol
 2. Load balancing
