@@ -16,8 +16,8 @@
 4. One KV storage backend (Protobuf) 5. Authentication (e.g., basic auth)
 
 ## Important dates
-Start: **25.02.2020**
-Presentation: **12.05.2020**
+* Start: **25.02.2020**
+* Presentation: **12.05.2020**
 
 ## Team
 
