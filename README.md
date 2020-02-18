@@ -12,7 +12,8 @@
 2. Loadbalancer (e.g., traefik) 
 3. Two instances of a service (your choice) (REST / HTTP / ZeroMQ / Protobuf) 
     1. Coin tracker, survey / form, monitor application health, … 
-4. One KV storage backend (Protobuf) 5. Authentication (e.g., basic auth)
+4. One KV storage backend (Protobuf)
+5. Authentication (e.g., basic auth)
 
 ## Important dates
 * Start: **25.02.2020**
