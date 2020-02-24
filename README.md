@@ -27,6 +27,7 @@
 ## Ideas
 * Master-PW Verteilung
 * Hangman Game
+* Wett-App
 
 ## Technologies
 ### Possible Technology Stack
