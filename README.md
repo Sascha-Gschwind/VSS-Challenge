@@ -29,6 +29,7 @@
 * Hangman Game
 * Wett-App
 * Tracking/Monitoring-App
+* Issue-Reporting (z.B. Internetausfall)
 
 ## Technologies
 ### Possible Technology Stack
