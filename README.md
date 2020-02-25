@@ -31,6 +31,16 @@
 * Tracking/Monitoring-App
 * Issue-Reporting (z.B. Internetausfall)
 
+## Ideas from lecture
+* Coin-Tracker
+* Shopping list
+* Manage your grades
+* Personal blog
+* URL-shortener
+* Expense tracker
+* Time tracking
+* Online Quiz
+
 ## Technologies
 ### Possible Technology Stack
 * [Traefik](https://docs.traefik.io/) for load balancing
