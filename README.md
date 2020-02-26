@@ -15,6 +15,21 @@
 4. One KV storage backend (Protobuf)
 5. Authentication (e.g., basic auth)
 
+## Desicions
+* We will implement a shopping list API
+* Traefik load balancing
+* Traefik basic auth
+* ASP.NET Core REST API
+* PostgreSQL Database
+* Docker -> docker-compose.yml
+* Talend API Tester Chrome Extension | Postman
+
+## Setup
+* Visual Studio 2019 / 2017
+* .NET Core 3.1
+* Docker Desktop
+* (PostgreSQL)
+
 ## Important dates
 * Start: **25.02.2020**
 * Presentation: **12.05.2020**
