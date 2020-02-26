@@ -15,6 +15,21 @@
 4. One KV storage backend (Protobuf)
 5. Authentication (e.g., basic auth)
 
+## Desicions
+* We will implement a shopping list API
+* Traefik load balancing
+* Traefik basic auth
+* ASP.NET Core REST API
+* PostgreSQL Database
+* Docker -> docker-compose.yml
+* Talend API Tester Chrome Extension | Postman
+
+## Setup
+* Visual Studio 2019 / 2017
+* .NET Core 3.1
+* Docker Desktop
+* (PostgreSQL)
+
 ## Important dates
 * Start: **25.02.2020**
 * Presentation: **12.05.2020**
@@ -26,5 +41,29 @@
 
 ## Ideas
 * Master-PW Verteilung
+* Hangman Game
+* Wett-App
+* Tracking/Monitoring-App
+* Issue-Reporting (z.B. Internetausfall)
+* Website-Status-Tracker
+
+## Ideas from lecture
+* Coin-Tracker
+* Shopping list
+* Manage your grades
+* Personal blog
+* URL-shortener
+* Expense tracker
+* Time tracking
+* Online Quiz
 
 ## Technologies
+### Possible Technology Stack
+* [Traefik](https://docs.traefik.io/) for load balancing
+* [Docker](https://docs.docker.com/) for deployment / used by load balancing
+* [ASP.NET Core Web Api](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio) for text protocol
+* [React](https://reactjs.org/) with [Typescript](https://www.typescriptlang.org/) for frontend
+* [gRPC](https://docs.microsoft.com/en-us/aspnet/core/grpc/?view=aspnetcore-3.1) for binary protocol
+* [Protobuf](https://developers.google.com/protocol-buffers/docs/csharptutorial) for KV storage
+* [Traefik Auth Middleware](https://docs.traefik.io/middlewares/basicauth/) for authentication
+* [IdentityServer4](https://identityserver4.readthedocs.io/en/latest/) for authentication
