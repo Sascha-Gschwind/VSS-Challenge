@@ -30,6 +30,7 @@
 * Wett-App
 * Tracking/Monitoring-App
 * Issue-Reporting (z.B. Internetausfall)
+* Website-Status-Tracker
 
 ## Ideas from lecture
 * Coin-Tracker
