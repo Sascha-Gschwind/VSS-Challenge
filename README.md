@@ -15,7 +15,7 @@
 4. One KV storage backend (Protobuf)
 5. Authentication (e.g., basic auth)
 
-## Desicions
+## Decicions
 * We will implement a shopping list API
 * Traefik load balancing
 * Traefik basic auth
@@ -29,6 +29,11 @@
 * .NET Core 3.1
 * Docker Desktop
 * (PostgreSQL)
+
+## Local Dev Environment - SQL Setup
+* PostgreSQL (local installation)
+* Database 'shoppinglist' with owner 'shoppinglistadmin' and password 'shoppinglistadmin'
+* Table 'items' with columns 'id' (INTEGER, Primary Key) and 'value' (TEXT) with owner 'shoppinglistadmin' 
 
 ## Important dates
 * Start: **25.02.2020**
