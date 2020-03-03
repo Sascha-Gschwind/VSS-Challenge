@@ -15,6 +15,6 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # Set default environment variables
-ENV ConnectionString="Server=127.0.0.1;Port=5432;Database=shoppinglist;User Id=shoppinglistadmin;Password=shoppinglistadmin;"
+ENV ConnectionString="Server=host.docker.internal;Port=5432;Database=shoppinglist;User Id=shoppinglistadmin;Password=shoppinglistadmin;"
 
 ENTRYPOINT ["dotnet", "ShoppingListApi.dll"]
