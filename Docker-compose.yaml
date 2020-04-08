@@ -7,6 +7,13 @@ services:
       POSTGRES_PASSWORD: secretPassword
       POSTGRES_DB: vss
     ports:
-      - "5454:5454"
+      - "5432:5432"
     volumes:
       - "./database/setup.sql:/docker-entrypoint-initdb.d/setup.sql"
+  api:
+    image: gschwind/shoppinglistapi
+    environment: 
+      ConnectionString: "Server=localhost;Port=5432;Database=vss;User Id=postgres;Password=secretPassword;"
+    ports:
+      - "5001:5001"
+      - "44370:44370"
