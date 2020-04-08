@@ -26,13 +26,13 @@ namespace ShoppingListApi.Controllers
             await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("SELECT * FROM item", connection))
+                await using (var cmd = new NpgsqlCommand("SELECT * FROM items", connection))
                 {
                     await using (var reader = await cmd.ExecuteReaderAsync())
                     {
                         while (await reader.ReadAsync())
                         {
-                            items.Add(new Item { Id = reader.GetInt32(0), Value = reader.GetString(1) });
+                            items.Add(new Item { Id = reader.GetInt32(0), Description = reader.GetString(1) });
                         }
                     }
                 }
@@ -49,7 +49,7 @@ namespace ShoppingListApi.Controllers
             await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("SELECT * FROM item WHERE id = (@p)", connection))
+                await using (var cmd = new NpgsqlCommand("SELECT * FROM items WHERE id = (@p)", connection))
                 {
                     cmd.Parameters.AddWithValue("p", id);
                     await using (var reader = await cmd.ExecuteReaderAsync())
@@ -57,7 +57,7 @@ namespace ShoppingListApi.Controllers
                         await reader.ReadAsync();
                         if (reader.HasRows)
                         {
-                            item = new Item { Id = reader.GetInt32(0), Value = reader.GetString(1) };
+                            item = new Item { Id = reader.GetInt32(0), Description = reader.GetString(1) };
                         }
                     }
                 }
@@ -77,7 +77,7 @@ namespace ShoppingListApi.Controllers
             await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("INSERT INTO item VALUES(DEFAULT, (@p))", connection))
+                await using (var cmd = new NpgsqlCommand("INSERT INTO items VALUES(DEFAULT, (@p))", connection))
                 {
                     cmd.Parameters.AddWithValue("p", value);
                     await cmd.ExecuteNonQueryAsync();
@@ -91,17 +91,17 @@ namespace ShoppingListApi.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateItemAsync(Item item)
         {
-            if (item == null || item.Id == 0 || item.Value == null)
+            if (item == null || item.Id == 0 || item.Description == null)
             {
                 return BadRequest();
             }
             await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("UPDATE item SET value = (@p) WHERE id = (@i)", connection))
+                await using (var cmd = new NpgsqlCommand("UPDATE items SET description = (@p) WHERE id = (@i)", connection))
                 {
                     cmd.Parameters.AddWithValue("i", item.Id);
-                    cmd.Parameters.AddWithValue("p", item.Value);
+                    cmd.Parameters.AddWithValue("p", item.Description);
                     await cmd.ExecuteNonQueryAsync();
                 }
                 await connection.CloseAsync();
@@ -120,7 +120,7 @@ namespace ShoppingListApi.Controllers
             await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("DELETE FROM item WHERE id = (@i)", connection))
+                await using (var cmd = new NpgsqlCommand("DELETE FROM items WHERE id = (@i)", connection))
                 {
                     cmd.Parameters.AddWithValue("i", id);
                     await cmd.ExecuteNonQueryAsync();
