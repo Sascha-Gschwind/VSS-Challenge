@@ -8,12 +8,23 @@ services:
       POSTGRES_DB: vss
     ports:
       - "5432:5432"
+    networks:
+      - net
     volumes:
       - "./database/setup.sql:/docker-entrypoint-initdb.d/setup.sql"
+      
   api:
     image: gschwind/shoppinglistapi
     environment: 
-      ConnectionString: "Server=localhost;Port=5432;Database=vss;User Id=postgres;Password=secretPassword;"
+      ConnectionString: "Server=db;Port=5432;Database=vss;User Id=postgres;Password=secretPassword;"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    networks:
+      - net
     ports:
-      - "5001:5001"
-      - "44370:44370"
+      - "44444:80"
+    #labels:
+    #  - "traefik.http.routers.api.rule=Host(`api.docker.localhost`)"
+    #  - "traefik.http.routers.api.middlewares=test-auth"
+
+networks:
+  net:

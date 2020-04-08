@@ -77,7 +77,7 @@ namespace ShoppingListApi.Controllers
             await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("INSERT INTO items VALUES(DEFAULT, (@p))", connection))
+                await using (var cmd = new NpgsqlCommand("INSERT INTO items (description) VALUES((@p))", connection))
                 {
                     cmd.Parameters.AddWithValue("p", value);
                     await cmd.ExecuteNonQueryAsync();
