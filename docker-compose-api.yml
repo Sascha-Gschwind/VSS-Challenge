@@ -1,0 +1,9 @@
+version: '3.1'
+services:
+  api:
+    image: gschwind/vssapi
+    environment: 
+      ConnectionString: "Server=tcp:azure-test-sql.database.windows.net,1433;Initial Catalog=shoppinglist;Persist Security Info=False;User ID=dbadmin;Password=COoN8!ZDraGES1iG@x66;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    ports:
+      - "40000:80"

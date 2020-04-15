@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: secretPassword
       POSTGRES_DB: vss
     ports:
-      - "5433:5432"
+      - "5432:5432"
     networks:
       - net
     volumes:
@@ -16,7 +16,7 @@ services:
   api:
     image: gschwind/shoppinglistapi
     environment: 
-      ConnectionString: "Server=host.docker.internal;Port=5433;Database=vss;User Id=postgres;Password=secretPassword;"
+      ConnectionString: "Server=db;Port=5432;Database=vss;User Id=postgres;Password=secretPassword;"
       ASPNETCORE_ENVIRONMENT: "Development"
     networks:
       - net
