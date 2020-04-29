@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: secretPassword
       POSTGRES_DB: vss
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - net
     volumes:
@@ -16,12 +16,12 @@ services:
   api:
     image: gschwind/shoppinglistapi
     environment: 
-      ConnectionString: "Server=db;Port=5432;Database=vss;User Id=postgres;Password=secretPassword;"
+      ConnectionString: "Server=host.docker.internal;Port=5433;Database=vss;User Id=postgres;Password=secretPassword;"
       ASPNETCORE_ENVIRONMENT: "Development"
     networks:
       - net
     ports:
-      - "44444:80"
+      - "40000:80"
     #labels:
     #  - "traefik.http.routers.api.rule=Host(`api.docker.localhost`)"
     #  - "traefik.http.routers.api.middlewares=test-auth"

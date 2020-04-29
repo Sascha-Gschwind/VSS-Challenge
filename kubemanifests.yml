@@ -1,0 +1,71 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+        convert -f .\docker-compose-api.yml -o kubemanifests.yml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: api
+    name: api
+  spec:
+    type: LoadBalancer
+    ports:
+    - name: "3000"
+      port: 3000
+      targetPort: 80
+    selector:
+      io.kompose.service: api
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+        convert -f .\docker-compose-api.yml -o kubemanifests.yml
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: api
+    name: api
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        io.kompose.service: api
+    strategy: {}
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+            convert -f .\docker-compose-api.yml -o kubemanifests.yml
+          kompose.version: 1.21.0 (992df58d8)
+        creationTimestamp: null
+        labels:
+          io.kompose.service: api
+      spec:
+        containers:
+        - env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: ConnectionString
+            value: Server=tcp:azure-test-sql.database.windows.net,1433;Initial Catalog=shoppinglist;Persist
+              Security Info=False;User ID=dbadmin;Password=COoN8!ZDraGES1iG@x66;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection
+              Timeout=30;
+          image: gschwind/vssapi
+          imagePullPolicy: ""
+          name: api
+          ports:
+          - containerPort: 80
+          resources: {}
+        restartPolicy: Always
+        serviceAccountName: ""
+        volumes: null
+  status: {}
+kind: List
+metadata: {}
+

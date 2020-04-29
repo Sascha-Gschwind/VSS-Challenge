@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using Npgsql;
 using ShoppingListApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,10 +24,10 @@ namespace ShoppingListApi.Controllers
         public async Task<IEnumerable<Item>> GetAllAsync()
         {
             var items = new List<Item>();
-            await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
+            await using (var connection = new SqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("SELECT * FROM items", connection))
+                await using (var cmd = new SqlCommand("SELECT * FROM items", connection))
                 {
                     await using (var reader = await cmd.ExecuteReaderAsync())
                     {
@@ -46,10 +47,10 @@ namespace ShoppingListApi.Controllers
         public async Task<Item> GetItemAsync(int id)
         {
             Item item = null;
-            await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
+            await using (var connection = new SqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("SELECT * FROM items WHERE id = (@p)", connection))
+                await using (var cmd = new SqlCommand("SELECT * FROM items WHERE id = (@p)", connection))
                 {
                     cmd.Parameters.AddWithValue("p", id);
                     await using (var reader = await cmd.ExecuteReaderAsync())
@@ -74,10 +75,10 @@ namespace ShoppingListApi.Controllers
             {
                 return BadRequest();
             }
-            await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
+            await using (var connection = new SqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("INSERT INTO items (description) VALUES((@p))", connection))
+                await using (var cmd = new SqlCommand("INSERT INTO items (description) VALUES((@p))", connection))
                 {
                     cmd.Parameters.AddWithValue("p", value);
                     await cmd.ExecuteNonQueryAsync();
@@ -95,10 +96,10 @@ namespace ShoppingListApi.Controllers
             {
                 return BadRequest();
             }
-            await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
+            await using (var connection = new SqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("UPDATE items SET description = (@p) WHERE id = (@i)", connection))
+                await using (var cmd = new SqlCommand("UPDATE items SET description = (@p) WHERE id = (@i)", connection))
                 {
                     cmd.Parameters.AddWithValue("i", item.Id);
                     cmd.Parameters.AddWithValue("p", item.Description);
@@ -117,10 +118,10 @@ namespace ShoppingListApi.Controllers
             {
                 return BadRequest();
             }
-            await using (var connection = new NpgsqlConnection(configuration["ConnectionString"]))
+            await using (var connection = new SqlConnection(configuration["ConnectionString"]))
             {
                 await connection.OpenAsync();
-                await using (var cmd = new NpgsqlCommand("DELETE FROM items WHERE id = (@i)", connection))
+                await using (var cmd = new SqlCommand("DELETE FROM items WHERE id = (@i)", connection))
                 {
                     cmd.Parameters.AddWithValue("i", id);
                     await cmd.ExecuteNonQueryAsync();
